@@ -19,6 +19,7 @@ for (let i = 0; i < imgUrls.length; i++) {
 
     if (i == 0) {
         imgUrls[i].classList.add('slide');
+        imgUrls[i].setAttribute('id','firstImg');
     } else {
         imgUrls[i].classList.add('dNone', 'slide');
     }
@@ -31,6 +32,7 @@ const slide = document.getElementsByClassName('slide');
 const btnBack = document.getElementById('btnBack');
 const btnNext = document.getElementById('btnNext');
 let currentSlide = 0;
+btnBack.style.display = "none";
 
 // Click sul Pulsante 'Next'
 btnNext.addEventListener("click",
@@ -48,8 +50,20 @@ btnNext.addEventListener("click",
 
         }
 
-        // Incrementa il valore della Variabile currentSlide 
+        // Incrementa il valore della Variabile currentSlide
         currentSlide++;
+
+        // Visibilità Pulsanti
+        if (currentSlide == 0) {
+            btnBack.style.display = "none";
+            btnNext.style.display = "block";
+        } else if (currentSlide == imgUrls.length - 1) {
+            btnNext.style.display = "none";
+            btnBack.style.display = "block";
+        } else {
+            btnNext.style.display = "block";
+            btnBack.style.display = "block";
+        }
 
     }
 );
@@ -72,6 +86,18 @@ btnBack.addEventListener("click",
 
         // Decrementa il valore della Variabile currentSlide 
         currentSlide--;
+
+        // Visibilità Pulsanti
+        if (currentSlide == 0) {
+            btnBack.style.display = "none";
+            btnNext.style.display = "block";
+        } else if (currentSlide == imgUrls.length - 1) {
+            btnNext.style.display = "none";
+            btnBack.style.display = "block";
+        } else {
+            btnNext.style.display = "block";
+            btnBack.style.display = "block";
+        }
 
     }
 );
