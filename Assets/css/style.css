@@ -1,4 +1,9 @@
 /* GENERAL STYLE */
+:root {
+    --red: #EE1A23;
+    --green: #869F76;
+}
+
 body {
     color: antiquewhite;
     background-color: rgb(34, 28, 33);
@@ -25,12 +30,13 @@ body {
 .gap1em        {gap: 1em;}
 .pRelative     {position: relative;}
 .pAbsolute     {position: absolute;}
+.pSticky       {position: sticky;}
 
 /* EXTRA GENERIC STYLE */
 .cPointer      {cursor: pointer;}
 .textAlignCent {text-align: center;}
 .pad1em        {padding: 1em;}
-.border        {border: 1px solid white;}
+.border        {border: 1px solid var(--red);}
 .w100Perc      {width: 100%;}
 
 /* HEADER STYLE */
@@ -38,8 +44,12 @@ header {
     height: 70px;
 }
 
-h1, button > i {
-    color: #869F76; /* green */
+header img {
+    height: 2rem;
+}
+
+h1 {
+    color: var(--green); 
 }
 
 /* MAIN STYLE */
@@ -52,7 +62,7 @@ main {
 #slider {
     width: 60vw;
     height: 70vh;
-    background-color: #869F76;
+    background-color: var(--green);
     border-right: transparent;
 }
 
@@ -62,33 +72,42 @@ main {
     object-fit: cover;
 }
 
-main button {
-    left: 50%;
-    transform: translateX(-50%);
-    padding: .3em .8em;
-    color: #869F76;
-    background-color: rgba(0, 0, 0, 0.7);
-    border: 1px solid black;
-    z-index: 1;
-    display: block;
-}
-
-main button:hover {
-    width: 100%;
-}
-
-main button:first-child {
-    top: 0;
-}
-
-main button:nth-child(2) {
-    bottom: 0;
-}
-
 #imagesBar {
     height: 70vh;
     width: 30vh;
     border-left: transparent;
+    overflow-y: scroll;
+}
+
+main button {
+    /* left: 50%; */
+    width: 100%;
+    height: 26px;
+    /* transform: translateX(-50%); */
+    padding: .3em .8em;
+    color: var(--red);
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid black;
+    z-index: 1;
+    display: block;
+    letter-spacing: .3em;
+    position: sticky;
+}
+
+button > i {
+    color: var(--red);
+}
+
+/* main button:hover {
+    width: 100%;
+} */
+
+#btnBack {
+    top: 0;
+}
+
+#btnNext {
+    bottom: 0;
 }
 
 .active {

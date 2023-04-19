@@ -5,7 +5,7 @@ const imagesBarElement = document.getElementById('imagesBar');
 // CREAZIONE E AGGIUNTA IMMAGINI DEL CAROSELLO
 
 // Lista src immagini
-const imgUrls = ['./Assets/img/01.webp', './Assets/img/02.webp', './Assets/img/03.webp', './Assets/img/04.webp', './Assets/img/05.webp']
+const imgUrls = ['./Assets/img/01.webp', './Assets/img/02.webp', './Assets/img/03.webp', './Assets/img/04.webp', './Assets/img/05.webp', './Assets/img/01.webp', './Assets/img/02.webp', './Assets/img/03.webp', './Assets/img/04.webp', './Assets/img/05.webp']
 
 // Ciclo: Creazione immagini Slider
 for (let i = 0; i < imgUrls.length; i++) {
@@ -31,7 +31,7 @@ for (let i = 0; i < imgUrls.length; i++) {
 }
 
 // Lista src immagini per Barra (se utilizzo il medesimo array 'imgUrls' non funziona)
-const imgUrlsBar = ['./Assets/img/01.webp', './Assets/img/02.webp', './Assets/img/03.webp', './Assets/img/04.webp', './Assets/img/05.webp']
+const imgUrlsBar = ['./Assets/img/01.webp', './Assets/img/02.webp', './Assets/img/03.webp', './Assets/img/04.webp', './Assets/img/05.webp', './Assets/img/01.webp', './Assets/img/02.webp', './Assets/img/03.webp', './Assets/img/04.webp', './Assets/img/05.webp']
 
 // Ciclo: Creazione immagini Barra
 for (let i = 0; i < imgUrlsBar.length; i++) {
@@ -42,7 +42,7 @@ for (let i = 0; i < imgUrlsBar.length; i++) {
     imgUrlsBar[i].classList.add('w100Perc', 'imagesBarCard');
     imgUrlsBar[i].setAttribute("src", `${currentImg}`);
     imgUrlsBar[i].style.backgroundImage = `url("${currentImg}")`;
-    imgUrlsBar[i].style.height = `calc( 100% / ${imgUrlsBar.length} )`;
+    imgUrlsBar[i].style.height = `calc( 100% / ${imgUrlsBar.length} * 3)`;
     imgUrlsBar[i].style.backgroundSize = "cover";
     imgUrlsBar[i].style.backgroundPosition = "center";
     imagesBarElement.append(imgUrlsBar[i]);
@@ -58,11 +58,16 @@ for (let i = 0; i < imgUrlsBar.length; i++) {
     }
 }
 
+// AGGIUNGE PULSANTE NEXT 
+imagesBarElement.innerHTML += `<button class="cPointer" id="btnNext"><i class="fa-solid fa-circle-arrow-down fa-sm"></i> NEXT</button>`
+
+
 // SCORRIMENTO IMMAGINI
 
 // Dichiara elementi html con variabili
 const slide = document.getElementsByClassName('slide');
-const card = document.getElementsByClassName('imagesBarCard');
+// const card = document.getElementsByClassName('imagesBarCard');
+const card = document.querySelectorAll(".imagesBarCard");
 const btnBack = document.getElementById('btnBack');
 const btnNext = document.getElementById('btnNext');
 let currentSlide = 0;
@@ -76,6 +81,7 @@ btnNext.addEventListener("click",
         for (let i = 0; i < imgUrls.length; i++) {
             const slide = imgUrls[i];
             const card = imgUrlsBar[i];
+            console.log(card);
             
             if (i == currentSlide+1) {
                 slide.classList.remove('dNone');
