@@ -39,8 +39,9 @@ for (let i = 0; i < imgUrlsBar.length; i++) {
     let currentImg = imgUrlsBar[i];
 
     imgUrlsBar[i] = document.createElement("div");
-    imgUrlsBar[i].classList.add('w100Perc', 'imagesBarCard');
+    imgUrlsBar[i].classList.add('w100Perc', 'imagesBarCard' ,'cPointer');
     imgUrlsBar[i].setAttribute("src", `${currentImg}`);
+    imgUrlsBar[i].setAttribute("id", `imgBar-${i}`);
     imgUrlsBar[i].style.backgroundImage = `url("${currentImg}")`;
     imgUrlsBar[i].style.height = `calc( 100% / ${imgUrlsBar.length} * 3)`;
     imgUrlsBar[i].style.backgroundSize = "cover";
@@ -50,23 +51,20 @@ for (let i = 0; i < imgUrlsBar.length; i++) {
     if (i == 0) {
         imgUrlsBar[i].classList.add('active');
         imgUrlsBar[i].setAttribute('id', 'firstImgBar');
+        document.getElementById('firstImgBar').style.marginTop = "-26px";
     } else {
         imgUrlsBar[i].classList.add('inactive');
         if (i == imgUrlsBar.length - 1) {
             imgUrlsBar[i].setAttribute('id', 'lastImgBar');
+            document.getElementById('lastImgBar').style.marginBottom = "26px";
         }
     }
 }
-
-// AGGIUNGE PULSANTE NEXT 
-imagesBarElement.innerHTML += `<button class="cPointer" id="btnNext"><i class="fa-solid fa-circle-arrow-down fa-sm"></i> NEXT</button>`
-// !!! Questa azione causa un bug irrisolto: creando il pulsante in questo modo, le classi active/inactive assegnate tramite i cicli for successivi, non vengono più assegnate agli elementi card nell'html. Se invece, inserisco questo pulsante direttamente nell'html, le classi active/inactive vengono assegnate, ma il pulsante Next non è nella posizione corretta. 
 
 // SCORRIMENTO IMMAGINI
 
 // Dichiara elementi html con variabili
 const slide = document.getElementsByClassName('slide');
-// const card = document.getElementsByClassName('imagesBarCard');
 const card = document.querySelectorAll(".imagesBarCard");
 const btnBack = document.getElementById('btnBack');
 const btnNext = document.getElementById('btnNext');
