@@ -22,6 +22,9 @@ for (let i = 0; i < imgUrls.length; i++) {
         imgUrls[i].setAttribute('id','firstImg');
     } else {
         imgUrls[i].classList.add('dNone', 'slide');
+        if (i == imgUrls.length-1) {
+            imgUrls[i].setAttribute('id', 'lastImg');
+        }
     }
 }
 
@@ -32,7 +35,7 @@ const slide = document.getElementsByClassName('slide');
 const btnBack = document.getElementById('btnBack');
 const btnNext = document.getElementById('btnNext');
 let currentSlide = 0;
-btnBack.style.display = "none";
+// btnBack.style.display = "none";
 
 // Click sul Pulsante 'Next'
 btnNext.addEventListener("click",
@@ -50,10 +53,15 @@ btnNext.addEventListener("click",
 
         }
 
-        // Incrementa il valore della Variabile currentSlide
-        currentSlide++;
+        // Incrementa il valore della Variabile currentSlide, crea Loop
+        if (currentSlide == imgUrls.length-1) {
+            document.getElementById('firstImg').classList.remove('dNone');
+            currentSlide = 0;
+        } else {
+            currentSlide++;
+        }
 
-        // Visibilità Pulsanti
+        /* // Visibilità Pulsanti
         if (currentSlide == 0) {
             btnBack.style.display = "none";
             btnNext.style.display = "block";
@@ -63,7 +71,7 @@ btnNext.addEventListener("click",
         } else {
             btnNext.style.display = "block";
             btnBack.style.display = "block";
-        }
+        } */
 
     }
 );
@@ -84,10 +92,16 @@ btnBack.addEventListener("click",
 
         }
 
-        // Decrementa il valore della Variabile currentSlide 
-        currentSlide--;
+        // Decrementa il valore della Variabile currentSlide, crea Loop
+        if (currentSlide == 0) {
+            console.log(currentSlide);
+            document.getElementById('lastImg').classList.remove('dNone');
+            currentSlide = imgUrls.length-1;
+        } else {
+            currentSlide--;
+        }
 
-        // Visibilità Pulsanti
+        /* // Visibilità Pulsanti
         if (currentSlide == 0) {
             btnBack.style.display = "none";
             btnNext.style.display = "block";
@@ -97,7 +111,7 @@ btnBack.addEventListener("click",
         } else {
             btnNext.style.display = "block";
             btnBack.style.display = "block";
-        }
+        } */
 
     }
 );
