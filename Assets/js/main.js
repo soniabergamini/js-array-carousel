@@ -1,12 +1,12 @@
 // Dichiara elementi html con variabili
-const sliderElement = document.getElementById('slider'); 
+const sliderElement = document.getElementById('slider');
 
 // CREAZIONE E AGGIUNTA IMMAGINI DEL CAROSELLO
 
 // Lista src immagini
 const imgUrls = ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp' ]
 
-// Creazione immagini 
+// Ciclo: Creazione immagini 
 for (let i = 0; i < imgUrls.length; i++) {
 
     let currentImg = imgUrls[i];
@@ -18,8 +18,60 @@ for (let i = 0; i < imgUrls.length; i++) {
     sliderElement.append(imgUrls[i]);
 
     if (i == 0) {
-        imgUrls[i].classList.add('dBlock', 'slide');
+        imgUrls[i].classList.add('slide');
     } else {
         imgUrls[i].classList.add('dNone', 'slide');
     }
 }
+
+// SCORRIMENTO IMMAGINI
+
+// Dichiara elementi html con variabili
+const slide = document.getElementsByClassName('slide');
+const btnBack = document.getElementById('btnBack');
+const btnNext = document.getElementById('btnNext');
+let currentSlide = 0;
+
+// Click sul Pulsante 'Next'
+btnNext.addEventListener("click",
+    function slideNext(){
+
+        // Ciclo Next: Scorrimento immagini
+        for (let i = 0; i < imgUrls.length; i++) {
+            const slide = imgUrls[i];
+            
+            if (i == currentSlide+1) {
+                slide.classList.remove('dNone');
+            } else {
+                slide.classList.add('dNone');
+            }
+
+        }
+
+        // Incrementa il valore della Variabile currentSlide 
+        currentSlide++;
+
+    }
+);
+
+// Click sul Pulsante 'Back'
+btnBack.addEventListener("click",
+    function slideBack() {
+
+        // Ciclo Back: Scorrimento immagini
+        for (let i = 0; i < imgUrls.length; i++) {
+            const slide = imgUrls[i];
+
+            if (i == currentSlide - 1) {
+                slide.classList.remove('dNone');
+            } else {
+                slide.classList.add('dNone');
+            }
+
+        }
+
+        // Decrementa il valore della Variabile currentSlide 
+        currentSlide--;
+
+    }
+);
