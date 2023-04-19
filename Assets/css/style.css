@@ -38,7 +38,7 @@ header {
     height: 70px;
 }
 
-h1 {
+h1, button > i {
     color: #869F76; /* green */
 }
 
@@ -50,7 +50,7 @@ main {
 }
 
 #slider {
-    width: 50vw;
+    width: 60vw;
     height: 70vh;
     background-color: #869F76;
     border-right: transparent;
@@ -73,6 +73,10 @@ main button {
     display: block;
 }
 
+main button:hover {
+    width: 100%;
+}
+
 main button:first-child {
     top: 0;
 }
@@ -85,10 +89,6 @@ main button:nth-child(2) {
     height: 70vh;
     width: 30vh;
     border-left: transparent;
-}
-
-.imagesBarCard {
-    /* height: calc(100% / 5); */
 }
 
 .active {
