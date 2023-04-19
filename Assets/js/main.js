@@ -1,19 +1,21 @@
 // Dichiara elementi html con variabili
 const sliderElement = document.getElementById('slider');
+const imagesBarElement = document.getElementById('imagesBar');
 
 // CREAZIONE E AGGIUNTA IMMAGINI DEL CAROSELLO
 
 // Lista src immagini
-const imgUrls = ['01.webp', '02.webp', '03.webp', '04.webp', '05.webp' ]
+const imgUrls = ['./Assets/img/01.webp', './Assets/img/02.webp', './Assets/img/03.webp', './Assets/img/04.webp', './Assets/img/05.webp']
 
-// Ciclo: Creazione immagini 
+// Ciclo: Creazione immagini Slider
 for (let i = 0; i < imgUrls.length; i++) {
 
     let currentImg = imgUrls[i];
 
     imgUrls[i] = document.createElement("img");
     imgUrls[i].alt = "slider-img";
-    imgUrls[i].src = `./Assets/img/${currentImg}`;
+    // imgUrls[i].src = `./Assets/img/${currentImg}`;
+    imgUrls[i].setAttribute("src", `${currentImg}`);
     console.log(imgUrls[i].src);
     sliderElement.append(imgUrls[i]);
 
@@ -26,6 +28,21 @@ for (let i = 0; i < imgUrls.length; i++) {
             imgUrls[i].setAttribute('id', 'lastImg');
         }
     }
+}
+
+// Lista src immagini per Barra (se utilizzo il medesimo array 'imgUrls' non funziona)
+const imgUrlsBar = ['./Assets/img/01.webp', './Assets/img/02.webp', './Assets/img/03.webp', './Assets/img/04.webp', './Assets/img/05.webp']
+
+// Ciclo: Creazione immagini Barra
+for (let i = 0; i < imgUrlsBar.length; i++) {
+
+    let currentImg = imgUrlsBar[i];
+
+    imgUrlsBar[i] = document.createElement("div");
+    imgUrlsBar[i].classList.add('w100Perc', 'imagesBarCard');
+    imgUrlsBar[i].setAttribute("src", `${currentImg}`);
+    imgUrlsBar[i].style.backgroundImage = `url("${currentImg}")`;
+    imagesBarElement.append(imgUrlsBar[i]);
 }
 
 // SCORRIMENTO IMMAGINI
