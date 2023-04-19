@@ -41,5 +41,20 @@ h1 {
 /* MAIN STYLE */
 main {
     min-height: calc(100vh - 70px);
+    width: 100%;
     text-align: center;
 }
+
+#slider {
+    width: 60vw;
+    height: 60vh;
+    background-color: #869F76;
+}
+
+#slider img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
