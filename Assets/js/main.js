@@ -42,12 +42,19 @@ for (let i = 0; i < imgUrlsBar.length; i++) {
     imgUrlsBar[i].classList.add('w100Perc', 'imagesBarCard');
     imgUrlsBar[i].setAttribute("src", `${currentImg}`);
     imgUrlsBar[i].style.backgroundImage = `url("${currentImg}")`;
+    imgUrlsBar[i].style.height = `calc( 100% / ${imgUrlsBar.length} )`;
+    imgUrlsBar[i].style.backgroundSize = "cover";
+    imgUrlsBar[i].style.backgroundPosition = "center";
     imagesBarElement.append(imgUrlsBar[i]);
 
     if (i == 0) {
         imgUrlsBar[i].classList.add('active');
+        imgUrlsBar[i].setAttribute('id', 'firstImgBar');
     } else {
         imgUrlsBar[i].classList.add('inactive');
+        if (i == imgUrlsBar.length - 1) {
+            imgUrlsBar[i].setAttribute('id', 'lastImgBar');
+        }
     }
 }
 
@@ -55,6 +62,7 @@ for (let i = 0; i < imgUrlsBar.length; i++) {
 
 // Dichiara elementi html con variabili
 const slide = document.getElementsByClassName('slide');
+const card = document.getElementsByClassName('imagesBarCard');
 const btnBack = document.getElementById('btnBack');
 const btnNext = document.getElementById('btnNext');
 let currentSlide = 0;
@@ -67,11 +75,16 @@ btnNext.addEventListener("click",
         // Ciclo Next: Scorrimento immagini
         for (let i = 0; i < imgUrls.length; i++) {
             const slide = imgUrls[i];
+            const card = imgUrlsBar[i];
             
             if (i == currentSlide+1) {
                 slide.classList.remove('dNone');
+                card.classList.remove('inactive');
+                card.classList.add('active');
             } else {
                 slide.classList.add('dNone');
+                card.classList.add('inactive');
+                card.classList.remove('active');
             }
 
         }
@@ -79,6 +92,8 @@ btnNext.addEventListener("click",
         // Incrementa il valore della Variabile currentSlide, crea Loop
         if (currentSlide == imgUrls.length-1) {
             document.getElementById('firstImg').classList.remove('dNone');
+            document.getElementById('firstImgBar').classList.remove('inactive');
+            document.getElementById('firstImgBar').classList.add('active');
             currentSlide = 0;
         } else {
             currentSlide++;
@@ -106,11 +121,16 @@ btnBack.addEventListener("click",
         // Ciclo Back: Scorrimento immagini
         for (let i = 0; i < imgUrls.length; i++) {
             const slide = imgUrls[i];
+            const card = imgUrlsBar[i];
 
             if (i == currentSlide - 1) {
                 slide.classList.remove('dNone');
+                card.classList.remove('inactive');
+                card.classList.add('active');
             } else {
                 slide.classList.add('dNone');
+                card.classList.add('inactive');
+                card.classList.remove('active');
             }
 
         }
@@ -119,6 +139,8 @@ btnBack.addEventListener("click",
         if (currentSlide == 0) {
             console.log(currentSlide);
             document.getElementById('lastImg').classList.remove('dNone');
+            document.getElementById('lastImgBar').classList.remove('inactive');
+            document.getElementById('lastImgBar').classList.add('active');
             currentSlide = imgUrls.length-1;
         } else {
             currentSlide--;

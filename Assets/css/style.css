@@ -88,9 +88,7 @@ main button:nth-child(2) {
 }
 
 .imagesBarCard {
-    height: calc(100% / 5);
-    background-size: cover;
-    background-position: center;
+    /* height: calc(100% / 5); */
 }
 
 .active {
