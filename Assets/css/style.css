@@ -53,6 +53,7 @@ main {
     width: 50vw;
     height: 70vh;
     background-color: #869F76;
+    border-right: transparent;
 }
 
 .slide {
@@ -83,10 +84,20 @@ main button:nth-child(2) {
 #imagesBar {
     height: 70vh;
     width: 30vh;
+    border-left: transparent;
 }
 
 .imagesBarCard {
     height: calc(100% / 5);
     background-size: cover;
     background-position: center;
+}
+
+.active {
+    opacity: 1;
+    border: 1px solid yellow;
+}
+
+.inactive {
+    opacity: 0.3;
 }

@@ -43,6 +43,12 @@ for (let i = 0; i < imgUrlsBar.length; i++) {
     imgUrlsBar[i].setAttribute("src", `${currentImg}`);
     imgUrlsBar[i].style.backgroundImage = `url("${currentImg}")`;
     imagesBarElement.append(imgUrlsBar[i]);
+
+    if (i == 0) {
+        imgUrlsBar[i].classList.add('active');
+    } else {
+        imgUrlsBar[i].classList.add('inactive');
+    }
 }
 
 // SCORRIMENTO IMMAGINI
