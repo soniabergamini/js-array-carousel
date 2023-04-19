@@ -1,0 +1,45 @@
+/* GENERAL STYLE */
+body {
+    color: antiquewhite;
+    background-color: rgb(34, 28, 33);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Rubik Microbe', cursive;
+    color: antiquewhite;
+}
+
+/* FLEX & DISPLAY STYLE */
+.dNone         {display: none;}
+.dBlock        {display: block;}
+.dFlex         {display: flex;}
+.justyCenter   {justify-content: center;}
+.alignCenter   {align-items: center;}
+.justySpaceBtw {justify-content: space-between;}
+.justySpaceEve {justify-content: space-evenly;}
+.fWrap         {flex-wrap: wrap;}
+.gap1em        {gap: 1em;}
+
+/* EXTRA GENERIC STYLE */
+.cPointer      {cursor: pointer;}
+.textAlignCent {text-align: center;}
+.pad1em        {padding: 1em;}
+.border        {border: 1px solid white;}
+
+/* HEADER STYLE */
+header {
+    height: 70px;
+}
+
+h1 {
+    color: #869F76; /* green */
+}
+
+/* MAIN STYLE */
+main {
+    min-height: calc(100vh - 70px);
+    text-align: center;
+}
