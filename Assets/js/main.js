@@ -60,7 +60,7 @@ for (let i = 0; i < imgUrlsBar.length; i++) {
 
 // AGGIUNGE PULSANTE NEXT 
 imagesBarElement.innerHTML += `<button class="cPointer" id="btnNext"><i class="fa-solid fa-circle-arrow-down fa-sm"></i> NEXT</button>`
-
+// !!! Questa azione causa un bug irrisolto: creando il pulsante in questo modo, le classi active/inactive assegnate tramite i cicli for successivi, non vengono più assegnate agli elementi card nell'html. Se invece, inserisco questo pulsante direttamente nell'html, le classi active/inactive vengono assegnate, ma il pulsante Next non è nella posizione corretta. 
 
 // SCORRIMENTO IMMAGINI
 
