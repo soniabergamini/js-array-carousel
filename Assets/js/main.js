@@ -1,25 +1,64 @@
-// Dichiara elementi html con variabili
+/*********************************************
+                VARIABLES
+*********************************************/
+
 const sliderElement = document.getElementById('slider');
 const imagesBarElement = document.getElementById('imagesBar');
+const slide = document.getElementsByClassName('slide');
+const card = document.querySelectorAll(".imagesBarCard");
+const btnBack = document.getElementById('btnBack');
+const btnNext = document.getElementById('btnNext');
+let currentSlide = 0;
+var imgNumb = 0;
 
 // CREAZIONE E AGGIUNTA IMMAGINI DEL CAROSELLO
 
-// Lista src immagini
-const imgUrls = ['./Assets/img/01.webp', './Assets/img/02.webp', './Assets/img/03.webp', './Assets/img/04.webp', './Assets/img/05.webp', './Assets/img/01.webp', './Assets/img/02.webp', './Assets/img/03.webp', './Assets/img/04.webp', './Assets/img/05.webp']
+// Lista src immagini Slide (Array) 
+const imgUrls = [
+    './Assets/img/01.webp', 
+    './Assets/img/02.webp', 
+    './Assets/img/03.webp', 
+    './Assets/img/04.webp', 
+    './Assets/img/05.webp', 
+    './Assets/img/01.webp', 
+    './Assets/img/02.webp', 
+    './Assets/img/03.webp', 
+    './Assets/img/04.webp', 
+    './Assets/img/05.webp'
+];
 
-// Ciclo: Creazione immagini Slider
+// Lista src immagini Thumbnails (Array) 
+// (se utilizzo il medesimo Array, alcune logiche non funzionano correttamente, per esempio lo scorrimento immagini con pulsanti Back/Next)
+const imgUrlsBar = [
+    './Assets/img/01.webp',
+    './Assets/img/02.webp',
+    './Assets/img/03.webp',
+    './Assets/img/04.webp',
+    './Assets/img/05.webp',
+    './Assets/img/01.webp',
+    './Assets/img/02.webp',
+    './Assets/img/03.webp',
+    './Assets/img/04.webp',
+    './Assets/img/05.webp'
+];
+
+/*********************************************
+                INIT
+*********************************************/
+
+// Ciclo: Creazione immagini Slider da Array 'imgUrls'
 for (let i = 0; i < imgUrls.length; i++) {
 
     let currentImg = imgUrls[i];
 
+    // Creazioni Immagini Slider
     imgUrls[i] = document.createElement("img");
     imgUrls[i].alt = "slider-img";
     imgUrls[i].setAttribute("id", `img-${i}`);
-    // imgUrls[i].src = `./Assets/img/${currentImg}`;
     imgUrls[i].setAttribute("src", `${currentImg}`);
-    console.log(imgUrls[i].src);
     sliderElement.append(imgUrls[i]);
 
+    // Gestione Condinazionale Immagini
     if (i == 0) {
         imgUrls[i].classList.add('slide');
         imgUrls[i].setAttribute('id','firstImg');
@@ -31,10 +70,39 @@ for (let i = 0; i < imgUrls.length; i++) {
     }
 }
 
-// Lista src immagini per Barra (se utilizzo il medesimo array 'imgUrls' non funziona)
-const imgUrlsBar = ['./Assets/img/01.webp', './Assets/img/02.webp', './Assets/img/03.webp', './Assets/img/04.webp', './Assets/img/05.webp', './Assets/img/01.webp', './Assets/img/02.webp', './Assets/img/03.webp', './Assets/img/04.webp', './Assets/img/05.webp']
+// Ciclo: Creazione Thumbnails Barra da Array 'imgUrls'
+// (Affinché funzioni, bisogna sostituire nel ciclo 'Creazione immagini Slider', imgUrls[i] con variabile tipo 'imgSlide'. Però poi attenzione perché lo scorrimento immagini con pulsanti non funziona.)
+// for (let i = 0; i < imgUrls.length; i++) {
 
-// Ciclo: Creazione immagini Barra
+//     let currentImgBar = imgUrls[i];
+
+//     // Creazione Immagini Thumbnails Barra
+//     const thumb = document.createElement("div");
+//     thumb.classList.add('w100Perc', 'imagesBarCard', 'cPointer');
+//     // thumb.setAttribute("src", `${currentImgBar}`);
+//     thumb.setAttribute("id", `imgBar-${i}`);
+//     // thumb.setAttribute("value", `${i}`);
+//     thumb.style.backgroundImage = `url("${currentImgBar}")`;
+//     thumb.style.height = `calc( 100% / ${imgUrls.length} * 3)`;
+//     thumb.style.backgroundSize = "cover";
+//     thumb.style.backgroundPosition = "center";
+//     imagesBarElement.append(thumb);
+
+//     // Gestione Condinazionale Immagini
+//     if (i == 0) {
+//         thumb.classList.add('active');
+//         thumb.setAttribute('id', 'firstImgBar');
+//         document.getElementById('firstImgBar').style.marginTop = "-26px";
+//     } else {
+//         thumb.classList.add('inactive');
+//         if (i == imgUrls.length - 1) {
+//             thumb.setAttribute('id', 'lastImgBar');
+//             document.getElementById('lastImgBar').style.marginBottom = "26px";
+//         }
+//     }
+// }
+
+// Ciclo: Creazione immagini Thumbnails Barra da Array 'imgUrlsBar'
 for (let i = 0; i < imgUrlsBar.length; i++) {
 
     let currentImg = imgUrlsBar[i];
@@ -43,6 +111,7 @@ for (let i = 0; i < imgUrlsBar.length; i++) {
     imgUrlsBar[i].classList.add('w100Perc', 'imagesBarCard' ,'cPointer');
     imgUrlsBar[i].setAttribute("src", `${currentImg}`);
     imgUrlsBar[i].setAttribute("id", `imgBar-${i}`);
+    // imgUrlsBar[i].setAttribute("value", `${i}`);
     imgUrlsBar[i].style.backgroundImage = `url("${currentImg}")`;
     imgUrlsBar[i].style.height = `calc( 100% / ${imgUrlsBar.length} * 3)`;
     imgUrlsBar[i].style.backgroundSize = "cover";
@@ -62,15 +131,13 @@ for (let i = 0; i < imgUrlsBar.length; i++) {
     }
 }
 
-// SCORRIMENTO IMMAGINI
-
-// Dichiara elementi html con variabili
-const slide = document.getElementsByClassName('slide');
-const card = document.querySelectorAll(".imagesBarCard");
-const btnBack = document.getElementById('btnBack');
-const btnNext = document.getElementById('btnNext');
-let currentSlide = 0;
 // btnBack.style.display = "none";
+
+/*********************************************
+                EVENTS
+*********************************************/
+
+// SCORRIMENTO IMMAGINI
 
 // Click sul Pulsante 'Next'
 btnNext.addEventListener("click",
@@ -79,8 +146,9 @@ btnNext.addEventListener("click",
         // Ciclo Next: Scorrimento immagini
         for (let i = 0; i < imgUrls.length; i++) {
             const slide = imgUrls[i];
+            // console.log(slide);
             const card = imgUrlsBar[i];
-            console.log(card);
+            // console.log(card);
             
             if (i == currentSlide+1) {
                 slide.classList.remove('dNone');
@@ -142,7 +210,6 @@ btnBack.addEventListener("click",
 
         // Decrementa il valore della Variabile currentSlide, crea Loop
         if (currentSlide == 0) {
-            console.log(currentSlide);
             document.getElementById('lastImg').classList.remove('dNone');
             document.getElementById('lastImgBar').classList.remove('inactive');
             document.getElementById('lastImgBar').classList.add('active');
@@ -167,8 +234,6 @@ btnBack.addEventListener("click",
 );
 
 // CLICK SULLE SINGOLE IMMAGINI THUMBNAILS DI IMAGESBAR
-var imgNunb = 1;
-
 // Funzione All Img
 function cardBarClick() {
     document.querySelector(".active").classList.add('inactive');
@@ -177,14 +242,14 @@ function cardBarClick() {
 }
 
 // Funzione First Img
-function cardClickImg0() {
+function cardClickFirstImg() {
     document.getElementById('firstImgBar').classList.add('active');
     document.getElementById('firstImgBar').classList.remove('inactive');
     document.getElementById('firstImg').classList.remove('dNone');
     currentSlide = 0;
 }
 
-// Funzione Imgs
+// Funzione All Imgs (First and Last Excluded)
 function cardClickImgs() {
     document.getElementById(`imgBar-${imgNumb}`).classList.add('active');
     document.getElementById(`imgBar-${imgNumb}`).classList.remove('inactive');
@@ -193,7 +258,7 @@ function cardClickImgs() {
 }
 
 // Funzione Last Img
-function cardClickImg9() {
+function cardClickLastImg() {
     document.getElementById('lastImgBar').classList.add('active');
     document.getElementById('lastImgBar').classList.remove('inactive');
     document.getElementById('lastImg').classList.remove('dNone');
@@ -203,7 +268,7 @@ function cardClickImg9() {
 // Click 1° Img Slide Bar
 document.getElementById('firstImgBar').addEventListener("click", () => {
     cardBarClick();
-    cardClickImg0();
+    cardClickFirstImg();
 });
 
 // Click 2° Img Slide Bar
@@ -265,5 +330,5 @@ document.getElementById('imgBar-8').addEventListener("click", () => {
 // Click 10° Img Slide Bar
 document.getElementById('lastImgBar').addEventListener("click", () => {
     cardBarClick();
-    cardClickImg9();
+    cardClickLastImg();
 });

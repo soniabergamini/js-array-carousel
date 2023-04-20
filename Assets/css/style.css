@@ -1,20 +1,26 @@
-/* GENERAL STYLE */
+/* ROOT */
 :root {
     --red: #EE1A23;
     --green: #869F76;
 }
 
-body {
-    color: antiquewhite;
-    background-color: rgb(34, 28, 33);
-}
-
+/* RESET */
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
     font-family: 'Rubik Microbe', cursive;
     color: antiquewhite;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* GENERAL STYLE */
+body {
+    color: antiquewhite;
+    background-color: rgb(34, 28, 33);
 }
 
 /* FLEX & DISPLAY & POSITION STYLE */
@@ -111,6 +117,7 @@ button > i {
 .active {
     opacity: 1;
     border: 1px solid yellow;
+    /* display: block; */
 }
 
 .inactive {
