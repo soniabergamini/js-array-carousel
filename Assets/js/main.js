@@ -70,6 +70,51 @@ for (let i = 0; i < imgUrls.length; i++) {
     }
 }
 
+// Ciclo: Creazione immagini Thumbnails Barra da Array 'imgUrlsBar'
+for (let i = 0; i < imgUrlsBar.length; i++) {
+
+    let currentImg = imgUrlsBar[i];
+
+    imgUrlsBar[i] = document.createElement("div");
+    imgUrlsBar[i].classList.add('w100Perc', 'imagesBarCard', 'cPointer');
+    imgUrlsBar[i].setAttribute("src", `${currentImg}`);
+    imgUrlsBar[i].setAttribute("id", `imgBar-${i}`);
+    // imgUrlsBar[i].setAttribute("value", `${i}`);
+    imgUrlsBar[i].style.backgroundImage = `url("${currentImg}")`;
+    imgUrlsBar[i].style.height = `calc( 100% / ${imgUrlsBar.length} * 3)`;
+    imgUrlsBar[i].style.backgroundSize = "cover";
+    imgUrlsBar[i].style.backgroundPosition = "center";
+
+    // CLICK SULLE SINGOLE IMMAGINI THUMBNAILS DI IMAGESBAR
+    imgUrlsBar[i].addEventListener("click",
+        function cardBarClick() {
+            document.querySelector(".active").classList.add('inactive');
+            document.querySelector(".active").classList.remove('active');
+            document.querySelector('img[class="slide"]').classList.add('dNone');
+
+            imgUrlsBar[i].classList.add('active');
+            imgUrlsBar[i].classList.remove('inactive');
+            imgUrls[i].classList.remove('dNone');
+            currentSlide = i;
+            console.warn(currentSlide);
+        }
+    );
+    // Creazione Immagini Thumbnails
+    imagesBarElement.append(imgUrlsBar[i]);
+
+    if (i == 0) {
+        imgUrlsBar[i].classList.add('active');
+        imgUrlsBar[i].setAttribute('id', 'firstImgBar');
+        document.getElementById('firstImgBar').style.marginTop = "-26px";
+    } else {
+        imgUrlsBar[i].classList.add('inactive');
+        if (i == imgUrlsBar.length - 1) {
+            imgUrlsBar[i].setAttribute('id', 'lastImgBar');
+            document.getElementById('lastImgBar').style.marginBottom = "26px";
+        }
+    }
+}
+
 // Ciclo: Creazione Thumbnails Barra da Array 'imgUrls'
 // (Affinché funzioni, bisogna sostituire nel ciclo 'Creazione immagini Slider', imgUrls[i] con variabile tipo 'imgSlide'. Però poi attenzione perché lo scorrimento immagini con pulsanti non funziona.)
 // for (let i = 0; i < imgUrls.length; i++) {
@@ -101,35 +146,6 @@ for (let i = 0; i < imgUrls.length; i++) {
 //         }
 //     }
 // }
-
-// Ciclo: Creazione immagini Thumbnails Barra da Array 'imgUrlsBar'
-for (let i = 0; i < imgUrlsBar.length; i++) {
-
-    let currentImg = imgUrlsBar[i];
-
-    imgUrlsBar[i] = document.createElement("div");
-    imgUrlsBar[i].classList.add('w100Perc', 'imagesBarCard' ,'cPointer');
-    imgUrlsBar[i].setAttribute("src", `${currentImg}`);
-    imgUrlsBar[i].setAttribute("id", `imgBar-${i}`);
-    // imgUrlsBar[i].setAttribute("value", `${i}`);
-    imgUrlsBar[i].style.backgroundImage = `url("${currentImg}")`;
-    imgUrlsBar[i].style.height = `calc( 100% / ${imgUrlsBar.length} * 3)`;
-    imgUrlsBar[i].style.backgroundSize = "cover";
-    imgUrlsBar[i].style.backgroundPosition = "center";
-    imagesBarElement.append(imgUrlsBar[i]);
-
-    if (i == 0) {
-        imgUrlsBar[i].classList.add('active');
-        imgUrlsBar[i].setAttribute('id', 'firstImgBar');
-        document.getElementById('firstImgBar').style.marginTop = "-26px";
-    } else {
-        imgUrlsBar[i].classList.add('inactive');
-        if (i == imgUrlsBar.length - 1) {
-            imgUrlsBar[i].setAttribute('id', 'lastImgBar');
-            document.getElementById('lastImgBar').style.marginBottom = "26px";
-        }
-    }
-}
 
 // btnBack.style.display = "none";
 
@@ -232,103 +248,3 @@ btnBack.addEventListener("click",
 
     }
 );
-
-// CLICK SULLE SINGOLE IMMAGINI THUMBNAILS DI IMAGESBAR
-// Funzione All Img
-function cardBarClick() {
-    document.querySelector(".active").classList.add('inactive');
-    document.querySelector('img[class="slide"]').classList.add('dNone');
-    document.querySelector(".active").classList.remove('active');
-}
-
-// Funzione First Img
-function cardClickFirstImg() {
-    document.getElementById('firstImgBar').classList.add('active');
-    document.getElementById('firstImgBar').classList.remove('inactive');
-    document.getElementById('firstImg').classList.remove('dNone');
-    currentSlide = 0;
-}
-
-// Funzione All Imgs (First and Last Excluded)
-function cardClickImgs() {
-    document.getElementById(`imgBar-${imgNumb}`).classList.add('active');
-    document.getElementById(`imgBar-${imgNumb}`).classList.remove('inactive');
-    document.getElementById(`img-${imgNumb}`).classList.remove('dNone');
-    currentSlide = imgNumb;
-}
-
-// Funzione Last Img
-function cardClickLastImg() {
-    document.getElementById('lastImgBar').classList.add('active');
-    document.getElementById('lastImgBar').classList.remove('inactive');
-    document.getElementById('lastImg').classList.remove('dNone');
-    currentSlide = 9;
-}
-
-// Click 1° Img Slide Bar
-document.getElementById('firstImgBar').addEventListener("click", () => {
-    cardBarClick();
-    cardClickFirstImg();
-});
-
-// Click 2° Img Slide Bar
-document.getElementById('imgBar-1').addEventListener("click", function () { imgNumb = 1; });
-document.getElementById('imgBar-1').addEventListener("click", () => {
-    cardBarClick();
-    cardClickImgs();
-});
-
-// Click 3° Img Slide Bar
-document.getElementById('imgBar-2').addEventListener("click", function() { imgNumb = 2; });
-document.getElementById('imgBar-2').addEventListener("click", () => {
-    cardBarClick();
-    cardClickImgs();
-});
-
-// Click 4° Img Slide Bar
-document.getElementById('imgBar-3').addEventListener("click", function () { imgNumb = 3; });
-document.getElementById('imgBar-3').addEventListener("click", () => {
-    cardBarClick();
-    cardClickImgs();
-});
-
-// Click 5° Img Slide Bar
-document.getElementById('imgBar-4').addEventListener("click", function () { imgNumb = 4; });
-document.getElementById('imgBar-4').addEventListener("click", () => {
-    cardBarClick();
-    cardClickImgs();
-});
-
-// Click 6° Img Slide Bar
-document.getElementById('imgBar-5').addEventListener("click", function () { imgNumb = 5; });
-document.getElementById('imgBar-5').addEventListener("click", () => {
-    cardBarClick();
-    cardClickImgs();
-});
-
-// Click 7° Img Slide Bar
-document.getElementById('imgBar-6').addEventListener("click", function () { imgNumb = 6; });
-document.getElementById('imgBar-6').addEventListener("click", () => {
-    cardBarClick();
-    cardClickImgs();
-});
-
-// Click 8° Img Slide Bar
-document.getElementById('imgBar-7').addEventListener("click", function () { imgNumb = 7; });
-document.getElementById('imgBar-7').addEventListener("click", () => {
-    cardBarClick();
-    cardClickImgs();
-});
-
-// Click 9° Img Slide Bar
-document.getElementById('imgBar-8').addEventListener("click", function () { imgNumb = 8; });
-document.getElementById('imgBar-8').addEventListener("click", () => {
-    cardBarClick();
-    cardClickImgs();
-});
-
-// Click 10° Img Slide Bar
-document.getElementById('lastImgBar').addEventListener("click", () => {
-    cardBarClick();
-    cardClickLastImg();
-});
