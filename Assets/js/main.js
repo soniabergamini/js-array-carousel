@@ -9,7 +9,6 @@ const card = document.querySelectorAll(".imagesBarCard");
 const btnBack = document.getElementById('btnBack');
 const btnNext = document.getElementById('btnNext');
 let currentSlide = 0;
-var imgNumb = 0;
 
 // CREAZIONE E AGGIUNTA IMMAGINI DEL CAROSELLO
 
@@ -96,7 +95,6 @@ for (let i = 0; i < imgUrlsBar.length; i++) {
             imgUrlsBar[i].classList.remove('inactive');
             imgUrls[i].classList.remove('dNone');
             currentSlide = i;
-            console.warn(currentSlide);
         }
     );
     // Creazione Immagini Thumbnails
@@ -162,9 +160,7 @@ btnNext.addEventListener("click",
         // Ciclo Next: Scorrimento immagini
         for (let i = 0; i < imgUrls.length; i++) {
             const slide = imgUrls[i];
-            // console.log(slide);
             const card = imgUrlsBar[i];
-            // console.log(card);
             
             if (i == currentSlide+1) {
                 slide.classList.remove('dNone');
